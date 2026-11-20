@@ -13,14 +13,14 @@ __perform!((all=() export=()), __chain[
 #[cfg(linktime_used_linker)]
 macro_rules! __add_used {
     (@entry next=$next:path[$next_args:tt], input=(all=($($input:tt)*) export=$export:tt)) => {
-        $next!($next_args, (all=($($input)* #[used(linker)]) export=$export));
+        $next!($next_args, (all=($($input)* /*#[used(linker)]*/) export=$export));
     };
 }
 
 #[cfg(not(linktime_used_linker))]
 macro_rules! __add_used {
     (@entry next=$next:path[$next_args:tt], input=(all=($($input:tt)*) export=$export:tt)) => {
-        $next!($next_args, (all=($($input)* #[used]) export=$export));
+        $next!($next_args, (all=($($input)* /*#[used]*/) export=$export));
     };
 }
 
